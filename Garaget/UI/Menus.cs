@@ -15,12 +15,26 @@ namespace Garaget.UI
         { this.ui = ui; }
         public static void ShowMainMeny(IUI ui)
         {
-            ui.Print("--Welcome to Garage Check in--\n\n");
-            ui.Print($"{MenyHelpers.Add}: Setup a Garage and Fill it with Vehicles");
-            ui.Print($"{MenyHelpers.Print}: Add Garage");
-            ui.Print($"{MenyHelpers.Quit}: Park a Vehicle");
-            ui.Print($"{MenyHelpers.Quit}: Pickup Vehicle from Garage");
-            ui.Print($"{MenyHelpers.Quit}: Search Functions");
+            ui.Print("--Welcome to Garage Check in--\n");
+            ui.Print($"{MenyHelpers.Park}: Park a Vehicle");
+            ui.Print($"{MenyHelpers.Pickup}: Pickup a Vehicle");
+            ui.Print($"{MenyHelpers.SeedGarage}: Seed a Garage");
+            ui.Print($"{MenyHelpers.SearchGarage}: Search the Garage");
+            ui.Print($"{MenyHelpers.DisplayEntities}: Show current parked");
+            ui.Print($"{MenyHelpers.Quit}: Quit");
+            ui.Input("Input: ");
+
+        }
+
+        public static void TypeOfVehicle(IUI ui)
+        {
+            ui.Print("--Which type of Vehicle would you like to check in--\n");
+            ui.Print($"{Choice.Car}: Car");
+            ui.Print($"{Choice.MotorCycle}: MotorCycle");
+            ui.Print($"{Choice.Boat}: Boat");
+            ui.Print($"{Choice.AirPlane}: AirPlane");
+            ui.Print($"{Choice.Bus}: Bus");
+            ui.Input("Input: ");
 
         }
 

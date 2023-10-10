@@ -1,4 +1,5 @@
 ﻿using Garaget.UI;
+using Garaget.Vehicles;
 
 namespace Garaget
 {
@@ -6,10 +7,10 @@ namespace Garaget
     {
         static void Main(string[] args)
         {
-            IGarage garage = new Garage();
+          //  IGarage garage = new Garage<IVehicle>();
             IUI ui = new ConsoleUI();
 
-            Main main = new Main(ui, garage);
+            Main main = new Main(ui);
 
             
 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Garaget.Vehicles;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,6 +11,11 @@ namespace Garaget.UI
     {
         string GetInput();
         void Print(string message);
-    }
+
+        void Clear();
+
+        void Input(string message);
+
+    } 
 }
 

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Garaget.Vehicles
 {
-    internal class AirPlane : Vehicle
+    public class AirPlane : Vehicle
     {
         public int numberOfSeats;
 
@@ -15,16 +15,20 @@ namespace Garaget.Vehicles
             get { return numberOfSeats; }
             set
             {
-                if (value < 2 || value > 500)
-                    throw new ArgumentException("An airplane has a minimum of 2 seats and a maxiumum of 500 seats");
-                else
+           
                     numberOfSeats = value;
             }
         }
 
-        public AirPlane(int year, string make, string model, string color, string licencePlate, int numberOfSeats) : base(year, make, model, color, licencePlate)
+        public AirPlane(int numberOfSeats, int year, string make, string model, string color, string licencePlate) : base(year, make, model, color, licencePlate)
         {
             NumberOfSeats = numberOfSeats;
+        }
+
+        public override string ToString()
+
+        {
+            return "AirPlane of Make: " + Make + " Model: " + Model + " Manufactured year: " + Year + " number of seats: " + NumberOfSeats + " Color: " + Color + " Licenceplate: " + LicencePlate;
         }
     }
 }

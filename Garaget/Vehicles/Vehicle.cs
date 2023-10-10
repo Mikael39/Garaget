@@ -22,12 +22,7 @@ namespace Garaget.Vehicles
             get { return year; }
 
             set
-            {
-
-                if (value < 1900 || value > 2023)
-
-                    throw new ArgumentException("Year is out of bounds");
-                else
+            {             
                     year = value;
             }
         }
@@ -38,11 +33,7 @@ namespace Garaget.Vehicles
         {
             get { return make; }
             set
-            {
-                if (value.Length < 3 || value.Length > 10)
-
-                    throw new ArgumentException("Make must be between 3 and 10 signs");
-                else
+            {              
                     make = value;
             }
         }
@@ -50,11 +41,7 @@ namespace Garaget.Vehicles
         {
             get { return model; }
             set
-            {
-                if (value.Length < 2 || value.Length > 12)
-
-                    throw new ArgumentException("Model must be between 2 and 12 signs");
-                else
+            {             
                     model = value;
             }
         }
@@ -63,35 +50,25 @@ namespace Garaget.Vehicles
             get { return color; }
             set
             {
-                var colors = new List<string> { "black", "white", "brown", "green", "blue", "red", "grey", "beige", "yellow", "orange" };
-                string x = value;
-                bool contains = colors.Contains(x, StringComparer.OrdinalIgnoreCase);
-                if (contains)
-                    color = value;
-                else
-                    throw new ArgumentException("input a normal color");
-
+                color = value;
             }
         }
         public string LicencePlate
         {
             get { return licencePlate; }
             set
-            {
-                if (value.Length < 2 || value.Length > 8)
-                    throw new ArgumentException("Your sign must have mininumum two signs, at most seven signs");
-                else
+            {          
                     licencePlate = value;
             }
         }
 
         public Vehicle(int year, string make, string model, string color, string licencePlate)
         {
-            Year = year;
-            Make = make;
-            Model = model;
-            Color = color;
-            LicencePlate = licencePlate;
+            this.year = year;
+            this.make = make;
+            this.model = model;
+            this.color = color;
+            this.licencePlate = licencePlate;
         }
     }
 

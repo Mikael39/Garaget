@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,39 +9,58 @@ using Garaget.Vehicles;
 
 namespace Garaget
 {
-    public class Garage<T> where T : IGarage, IEnumerable<T>
+    public class Garage<T> : IGarage<T> where T : IVehicle
     {
-        public static int totalParkingSlots;       
-        public static int availableParkingSlots;
-        private Vehicle[] garaget;
-        
+        private int TotalParkingSlots { get; init; }
+        public int CurrentParked { get; private set; } = 0;      
+        private T[] garaget;
+    
 
+        public bool IsFull => TotalParkingSlots <= CurrentParked;
+        public bool IsEmpty => CurrentParked == 0;
 
         public Garage(int parkingSlots)
         {
-            TotalParkingSlots = parkingSlots; 
+            garaget = new T[parkingSlots];
+            TotalParkingSlots = parkingSlots;
         }
+        public void Add(T vehicle)
+               
+        {
+            ArgumentNullException.ThrowIfNull(vehicle, nameof(vehicle));
 
+            garaget[CurrentParked] = vehicle;
+            CurrentParked++;
 
-        public Vehicle[] CreateGarage(int n)
+        }
+        public IEnumerator<T> GetEnumerator()
         {
 
-            Vehicle[] garaget = new Vehicle[n];
-
-            return garaget;
-
+            foreach (T vehicle in garaget)
+            {
+                if (vehicle != null)
+                    yield return vehicle;
+            }
         }
-        public int TotalParkingSlots
+        public void CheckOut(T found)
         {
-            get { return totalParkingSlots; }
-            set { totalParkingSlots = value; }
-        }
 
-        public int AvailableParkingSlots
+            int index = Array.IndexOf(garaget, found);
+
+            for (int i = index + 1; i < CurrentParked; i++)
+            {
+                garaget[i - 1] = garaget[i];
+            }
+            garaget[CurrentParked - 1] = default!;
+            CurrentParked--;
+        }
+        public void DisplayVehicles()
         {
-            get { return availableParkingSlots; }
-            set { availableParkingSlots = totalParkingSlots - GarageHandler.currentParked; }
-        }
+            garaget.Where(p => p != null)
+                .ToList()
+                .ForEach(p => Console.WriteLine(p.ToString()));
 
+        }
+        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
     }
 }

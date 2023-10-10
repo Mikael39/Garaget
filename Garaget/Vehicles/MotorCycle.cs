@@ -6,12 +6,30 @@ using System.Threading.Tasks;
 
 namespace Garaget.Vehicles
 {
-    internal class MotorCycle : Vehicle
+    public class MotorCycle : Vehicle
     {
+        private int numberOfTrafficViolations;  
+        
+            public int NumberOfTrafficViolations
+            { 
+                get { return numberOfTrafficViolations; }
 
-        public MotorCycle(int year, string make, string model, string color, string licencePlate) : base(year, make, model, color, licencePlate)
+                set
+                {
+            
+                    numberOfTrafficViolations = value;
+                }
+        
+            }
+        public MotorCycle(int numberOfTrafficViolations, int year, string make, string model, string color, string licencePlate) : base(year, make, model, color, licencePlate)
         {
+            NumberOfTrafficViolations = numberOfTrafficViolations;
+        }
 
+        public override string ToString()
+
+        {
+            return "MC of Make: " + Make + " Model: " + Model + " Manufactured year: " + Year + " Traffic violations: " + NumberOfTrafficViolations + " Color: " + Color + " Licenceplate: " + LicencePlate;
         }
 
     }
